@@ -2,12 +2,14 @@ const app = new PIXI.Application({
     resizeTo: window,
     resolution: devicePixelRatio,
 });
+let bod = document.body
+bod.style.margin = "0"
 app.view.width = innerWidth
 app.view.height = innerHeight
-let speed = 0.8;
-const amount = 10
+let speed = 1;
+const amount = 65
 let animSpeed = 3;
-let rotationSpeed = 0.1
+let rotationSpeed = 0.3
 pos = {
     x: innerWidth / 2,
     y: innerHeight / 2,
@@ -38,17 +40,14 @@ class cubis {
             x: 200,
             y: 300,
             pi: Math.PI * 7 / 4
-
         }, {
             x: 300,
             y: 200,
             pi: Math.PI * 7 / 4
-
         }, {
             x: 200,
             y: 200,
             pi: Math.PI * 5 / 4
-
         }, ]
         this.pos = pos
         this.deg = 0
@@ -65,7 +64,7 @@ class cubis {
 
     }
 }
-cubicsSize = 65/devicePixelRatio;
+cubicsSize = 25/devicePixelRatio;
 incline = 0.5;
 let cubics = []
 
@@ -112,7 +111,6 @@ app.ticker.add((delta) => {
                 cubics[i].textures[a].y =  innerHeight/2 + rotateDots(i, a, true) + (cubicsSize / 1.5) * Math.sin(cubics[i].deg + Math.PI) + cubics[i].speed
             }
         }
-
         for (let a = 0; a < 7; a++) {
             var line = new PIXI.Graphics();
             app.stage.removeChild(cubics[i].lines[a]);
@@ -140,14 +138,6 @@ app.ticker.add((delta) => {
             line.lineTo(cubics[i].textures[4].x, cubics[i].textures[4].y);
             line.moveTo(cubics[i].textures[0].x, cubics[i].textures[0].y);
             line.lineTo(cubics[i].textures[3].x, cubics[i].textures[3].y);
-            // line.moveTo(cubics[i].textures[0].x, cubics[i].textures[0].y);
-            // line.lineTo(cubics[i].textures[4].x, cubics[i].textures[4].y);
-            // line.moveTo(cubics[i].textures[2].x, cubics[i].textures[2].y);
-            // line.lineTo(cubics[i].textures[6].x, cubics[i].textures[6].y);
-            // line.moveTo(cubics[i].textures[1].x, cubics[i].textures[1].y);
-            // line.lineTo(cubics[i].textures[3].x, cubics[i].textures[3].y);
-            // line.moveTo(cubics[i].textures[4].x, cubics[i].textures[4].y);
-            // line.lineTo(cubics[i].textures[2].x, cubics[i].textures[2].y);
             cubics[i].linesNull = line
             app.stage.addChild(cubics[i].linesNull);
         }
